@@ -56,8 +56,9 @@ class ContaBancaria:
             excedeu_saldo = valor > saldo_atual
             if data_operacao_formatada != data_atual:
                 self.cursor.execute('''UPDATE bank 
-                                       SET limite_valor_saque = 0
-                                       WHERE id_conta = ?''', (self.id_conta))
+                                       SET limite_valor_saque = 0 ,
+                                       numero_saques = 0     
+                                       WHERE id_conta = ?''', (self.id_conta,))
                 self.conn.commit()
             if excedeu_saldo:
                 print("Operação falhou! Você não tem saldo suficiente.")
