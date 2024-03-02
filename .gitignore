@@ -1,0 +1,41 @@
+# Arquivos e diretórios a serem ignorados pelo Git
+
+# Diretório __pycache__ e seus arquivos .pyc
+__pycache__/
+*.pyc
+
+# Diretório onde os arquivos de ambiente virtual são instalados (por exemplo, virtualenv, venv)
+venv/
+env/
+env-bak/
+ENV/
+
+# Arquivos de log
+*.log
+
+# Arquivos de backup
+*~
+
+# Arquivos de configuração específicos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de saída de IDEs
+.idea/
+.vscode/
+
+# Arquivos de saída de compiladores e pacotes
+*.pyo
+*.pyc
+*.pyd
+*.class
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+
+# Arquivos de saída de build
+build/
+dist/
+*.egg-info/
