@@ -1,27 +1,46 @@
-from modules.bank import ContaBancaria
+import psycopg2
 
+from utils.interface import *
+from modules.operacoesbancarias import OperacoesBancarias
 
 def depositar(conta):
-    valor = float(input("Informe o valor do depósito: "))
+    try:
+        valor = float(input("Informe o valor do depósito: "))
+    except ValueError:
+        print("Valor inválido. Por favor, insira um número válido.")
+        return
     conta.depositar(valor)
 
-
 def sacar(conta):
-    valor = float(input("Informe o valor do saque: "))
-    conta.sacar(valor)
-
+    try:
+        valor = float(input("Informe o valor do saque: "))
+    except ValueError:
+        print("Valor inválido. Por favor, insira um número válido.")
+        return
+    conta.saque_conta(valor)
 
 def mostrar_extrato(conta):
-    conta.mostrar_extrato()
-
+    conta.consultar_extrato()
 
 def sair(conta):
-    conta.__del__()
-
+    conta.sair()
 
 def main():
-    id_conta = input("Informe o ID da conta: ")
-    conta = ContaBancaria(id_conta)
+    conta = None
+    login = input("Já possui conta? Digite 's'. Caso contrário, digite 'c':  ")
+    if login == "c":
+        while True:
+            try:
+                conta_dados = criar_usuario()
+                operacao = OperacoesBancarias(conta_dados)
+                operacao.criar_usuario()
+                break
+            except psycopg2.errors.UniqueViolation:
+                print("CPF já está em uso. Por favor, refaça o cadastro.")
+    elif login == "s":
+        conta_dados = fazer_login()
+        conta = OperacoesBancarias(conta_dados)
+
 
     opcoes = {
         'd': depositar,
