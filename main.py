@@ -32,14 +32,14 @@ def main():
         while True:
             try:
                 conta_dados = criar_usuario()
-                operacao = OperacoesBancarias(conta_dados)
-                operacao.criar_usuario()
+                conta = OperacoesBancarias(**conta_dados)
+                conta.criar_usuario_e_conta()
                 break
             except psycopg2.errors.UniqueViolation:
                 print("CPF já está em uso. Por favor, refaça o cadastro.")
     elif login == "s":
         conta_dados = fazer_login()
-        conta = OperacoesBancarias(conta_dados)
+        conta = OperacoesBancarias(**conta_dados)
 
 
     opcoes = {
