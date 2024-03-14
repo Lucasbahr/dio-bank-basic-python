@@ -19,9 +19,7 @@ def criar_usuario():
     while not validar_senha(senha):
         senha = input(
             "Senha nao atende os requisitos ! . Por favor, tente outra senha: ")
-    id_conta = gerar_numero_conta()
     conta_dados = {
-        'id_conta':id_conta,
         'cpf': cpf,
         'nome': nome,
         'email': email,
@@ -36,24 +34,15 @@ def fazer_login():
     while tentativas < 3:
         cpf = input("Informe seu CPF somente números: ")
         senha = input("Digite sua senha de 6 digitos numericos: ")
-        conta_dados = {
-            'id_conta': 'id_conta',
-            'cpf': cpf,
-            'nome': 'nome',
-            'email': 'email',
-            'tipo_conta':'' ,
-            'senha':' '
-        }
-        operacao = OperacoesBancarias(conta_dados, senha=senha)
+
+        operacao = OperacoesBancarias(cpf=cpf, senha=senha)
         conta = operacao.buscar_usuario()
         login = operacao.fazer_login()
         if login:
             user = {
-                'id_conta': conta['id_conta'],
                 'cpf': cpf,
                 'email': conta['email'],
                 'nome': conta['nome'],
-                'tipo_conta': conta['tipo_conta'],
             }
             return user
         else:

@@ -5,18 +5,16 @@
 psql -h localhost -p 5432 -U docker -c "CREATE DATABASE contas_banco"
 
 
-psql -h localhost -p 5432 -U docker  -d contas_banco -c "CREATE TABLE IF NOT EXISTS users (
-    id_conta TEXT PRIMARY KEY,
-    cpf BIGINT  UNIQUE,
+psql -h localhost -p 5432 -U docker  -d contas_banco -c "CREATE TABLE IF NOT EXISTS clientes (
+    cpf BIGINT PRIMARY KEY,
     email TEXT,
-    nome TEXT,
-    tipo_conta TEXT,
-    senha TEXT,
-    papper TEXT
+    nome TEXT
 );"
 
-psql -h localhost -p 5432 -U docker  -d contas_banco -c "CREATE TABLE IF NOT EXISTS bank (
-    id_conta TEXT  PRIMARY KEY,
+psql -h localhost -p 5432 -U docker  -d contas_banco -c "CREATE TABLE IF NOT EXISTS contas_bancarias (
+    id_conta TEXT PRIMARY KEY,
+    cpf_cliente BIGINT,
+    tipo_conta TEXT,
     saldo REAL,
     extrato TEXT,
     numero_saques INTEGER,
@@ -25,5 +23,7 @@ psql -h localhost -p 5432 -U docker  -d contas_banco -c "CREATE TABLE IF NOT EXI
     limite_saques INTEGER,
     data_saque TEXT,
     data_deposito TEXT,
-    FOREIGN KEY (id_conta) REFERENCES users(id_conta)
+    senha_hash TEXT,
+    papper TEXT,
+    FOREIGN KEY (cpf_cliente) REFERENCES clientes(cpf)
 );"
