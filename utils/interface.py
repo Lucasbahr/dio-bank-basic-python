@@ -45,7 +45,7 @@ def fazer_login():
             'senha':' '
         }
         operacao = OperacoesBancarias(conta_dados, senha=senha)
-        conta = operacao.buscas_usuarios()
+        conta = operacao.buscar_usuario()
         login = operacao.fazer_login()
         if login:
             user = {
