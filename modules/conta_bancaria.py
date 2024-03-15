@@ -1,4 +1,4 @@
-from utils.banco_de_dados import Database
+from modules.banco_de_dados import Database
 from utils.ferramentas import gerar_numero_conta
 from modules.cliente import Cliente
 

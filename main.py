@@ -1,7 +1,7 @@
 import psycopg2
 
 from utils.interface import *
-from modules.operacoesbancarias import OperacoesBancarias
+from modules.operacoe_bancarias import OperacoesBancarias
 
 def depositar(conta):
     try:

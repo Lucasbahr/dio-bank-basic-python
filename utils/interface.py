@@ -1,5 +1,5 @@
 from utils.ferramentas import *
-from modules.operacoesbancarias import OperacoesBancarias
+from modules.operacoe_bancarias import OperacoesBancarias
 def criar_usuario():
     cpf = input("Informe seu CPF somente números: ")
     while not validar_cpf(cpf):
